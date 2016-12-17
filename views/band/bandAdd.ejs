@@ -1,0 +1,35 @@
+<%- include("../includes/header.ejs", {title:"Add a new Band"}); %>
+
+<h1>Add a New Band</h1>
+<form action="/band/insert" method="get">
+    Band Name: <input id="band_name" name="band_name" type="text" />
+    <br />
+    <br />
+    Home Town: <br> <input id="home_town" name="home_town" type="text"/>
+    <br />
+    Year Formed: <br> <input id="year_formed" name="year_formed" type="text"/>
+    <br />
+    Biography: <br> <input id="biography" name="biography" type="text"/>
+    <br />
+    Band Member(s)
+    <br />
+    <select id="member_id" name="member_id" multiple="multiple">
+        <% for(var i=0; member.length > i; i++ ) { %>
+        <option value="<%= member[i].member_id %>"><%= member[i].first_name + ' ' + member[i].last_name %><option>
+        <% } %>
+    </select>
+
+    <!-- Initialize the multiselect plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#member_id').multiselect();
+        });
+    </script>
+
+
+    <br />
+    <input type="submit" onclick="alert('Band Added!')">
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

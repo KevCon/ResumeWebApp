@@ -1,0 +1,40 @@
+<%- include("../includes/header.ejs", {title: "Update " + band.band_name}); %>
+
+<h1>Update <%= band.band_name%></h1>
+<form action="/band/update" method="get">
+    <input type="hidden" id="band_id" name="band_id" value="<%= band.band_id %>">
+    Band Name: <input id="band_name" name="band_name" type="text" value="<%= band.band_name%>"/>
+    <br />
+    <br />
+    Home Town: <br> <input id="home_town" name="home_town" type="text"/>
+    <br />
+    Year Formed: <br> <input id="year_formed" name="year_formed" type="text"/>
+    <br />
+    Biography: <br> <input id="biography" name="biography" type="text"/>
+    <br />
+    Band Members <br />
+    <select id="member_id" name="member_id" multiple="multiple">
+        <% for(var i=0; member.length > i; i++ ) {
+            var selected = "";
+            if(member[i].band_id != null) {
+                selected = "selected";
+            }
+        %>
+        <option value="<%= member[i].member_id %>" <%= selected %> ><%= member[i].first_name + ' ' + member[i].last_name %></option>
+        <% } %>
+    </select>
+
+    <!-- Initialize the multiselect plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#member_id').multiselect();
+        });
+    </script>
+
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

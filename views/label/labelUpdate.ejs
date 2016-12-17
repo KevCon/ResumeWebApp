@@ -1,0 +1,46 @@
+<%- include("../includes/header.ejs", {title: "Update " + label.label_name}); %>
+
+<h1>Update <%= label.label_name%></h1>
+<form action="/label/update" method="get">
+    <input type="hidden" id="label_id" name="label_id" value="<%= label.label_id %>">
+    Label Name: <input id="label_name" name="label_name" type="text" value="<%= label.label_name%>"/>
+    <br />
+    <br />
+    Address
+    <br />
+    Street: <br> <input id="street" name="street" type="text"/>
+    <br />
+    City: <br> <input id="city" name="city" type="text"/>
+    <br />
+    State: <br> <input id="state" name="state" type="text"/>
+    <br />
+    Zip Code: <br> <input id="zip" name="zip" type="text"/>
+    <br />
+    Year Founded: <br> <input id="year_founded" name="year_founded" type="text"/>
+    <br />
+    Record Label's Bands <br />
+    <select id="band_id" name="band_id" multiple="multiple">
+        <% for(var i=0; band.length > i; i++ ) {
+            var selected = "";
+            if(band[i].label_id != null) {
+                selected = "selected";
+            }
+        %>
+        <option value="<%= band[i].band_id %>" <%= selected %> ><%= band[i].band_name %></option>
+        <% } %>
+    </select>
+
+    <!-- Initialize the multiselect plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#band_id').multiselect();
+        });
+    </script>
+
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

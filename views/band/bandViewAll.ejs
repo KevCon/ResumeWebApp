@@ -1,0 +1,27 @@
+<%- include("../includes/header.ejs", {title:"Band - View All"} );%>
+<h1>Bands</h1>
+<a href="/band/add">Add a New Band</a> <br />
+
+<br />
+
+<table border="1">
+    <tr><th>Band Name</th><th>Home Town</th><th>Year Formed</th><th>Biography</th><th>Action</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/band/?band_id=<%= result[i].band_id %>"><%= result[i].band_name %></a></td>
+        <td><%= result[i].home_town %></td>
+        <td><%= result[i].year_formed %></td>
+        <td><%= result[i].biography %></td>
+        <td><form action="/band/delete/">
+                <input type="hidden" name="band_id" id="band_id" value="<%= result[i].band_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+
+<a href="/"><< back</a>
+
+
+<%- include("../includes/footer.ejs");%>

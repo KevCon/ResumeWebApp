@@ -1,0 +1,26 @@
+<%- include("../includes/header.ejs", {title:"Label - View All"} );%>
+
+<h1>Labels</h1>
+<a href="/label/add">Add a New Record Label</a> <br />
+
+<br />
+
+<table border="1">
+    <tr><th>Label Name</th><th>Address</th><th>Year Founded</th><th>Action</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/label/?label_id=<%= result[i].label_id %>"><%= result[i].label_name %></a></td>
+        <td><%= result[i].street %>, <%= result[i].city %>, <%= result[i].state %>, <%= result[i].zip %></td>
+        <td> <%= result[i].year_founded %></td>
+        <td><form action="/label/delete/">
+                <input type="hidden" name="label_id" id="label_id" value="<%= result[i].label_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<a href="/"><< back</a>
+
+
+<%- include("../includes/footer.ejs");%>
