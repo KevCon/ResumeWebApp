@@ -10,7 +10,7 @@ var index = require('./routes/index');
 var label = require('./routes/label_routes');
 var band = require('./routes/band_routes');
 var member = require('./routes/member_routes');
-
+var about = require('./routes/about');
 var app = express();
 
 // view engine setup
@@ -27,6 +27,7 @@ app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/about', about);
 
 app.use('/label', label);
 app.use('/band', band);
